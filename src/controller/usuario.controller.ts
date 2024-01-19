@@ -1,5 +1,5 @@
 import { UsuarioRepository } from './../repository/usuario.repository';
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
 @Controller('/usuarios')
 export class UsuarioController {
@@ -9,5 +9,10 @@ export class UsuarioController {
   async criarUsuario(@Body() dadosDoUsuario) {
     this.UsuarioRepository.salvar(dadosDoUsuario);
     return dadosDoUsuario;
+  }
+
+  @Get()
+  async listarUsuarios() {
+    return this.UsuarioRepository.listar();
   }
 }
