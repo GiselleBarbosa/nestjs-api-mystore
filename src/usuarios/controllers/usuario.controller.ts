@@ -1,4 +1,4 @@
-import { UsuarioRepository } from './../repository/usuario.repository';
+import { UsuarioRepository } from '../repository/usuario.repository';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 
 @Controller('/usuarios')
