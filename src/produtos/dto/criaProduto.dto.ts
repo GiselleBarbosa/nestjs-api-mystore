@@ -8,8 +8,6 @@ import {
   MaxLength,
   Min,
   ValidateNested,
-  isArray,
-  min,
 } from 'class-validator';
 
 import { CaracteristicaProdutoDTO } from './caracteristicaProduto.dto';
@@ -38,7 +36,7 @@ export class CriaProdutoDTO {
 
   @ValidateNested()
   @IsArray()
-  @ArrayMinSize(2, { message: 'Deve ter no minimo 2 items '})
+  @ArrayMinSize(2, { message: 'Deve ter no minimo 2 items ' })
   @Type(() => CaracteristicaProdutoDTO)
   caracteristicas: CaracteristicaProdutoDTO[];
 

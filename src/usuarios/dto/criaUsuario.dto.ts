@@ -1,7 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class CriaUsuariosDTO {
-  // Os decorators são os validators do NestJS
   @IsNotEmpty({ message: 'CPF é obrigatório' })
   @IsString({ message: 'CPF inválido' })
   cpf: string;

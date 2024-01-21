@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ProdutosModule } from './produtos/produtos.module';
-import { UsuarioModule } from './usuarios/usuario.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 @Module({
-  imports: [UsuarioModule, ProdutosModule],
+  imports: [UsuariosModule, ProdutosModule],
   controllers: [],
   providers: [],
   exports: [],
