@@ -1,5 +1,7 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
+import { EmailEhUnico } from '../utils/validator/emailEhUnico.validator';
+
 export class CriaUsuariosDTO {
   @IsNotEmpty({ message: 'CPF é obrigatório' })
   @IsString({ message: 'CPF inválido' })
@@ -11,6 +13,7 @@ export class CriaUsuariosDTO {
   @IsString({ message: 'Telefone informado é obrigátorio' })
   mobile: string;
 
+  @EmailEhUnico({ message: 'Já existe uma conta com o email informado.' })
   @IsEmail(undefined, { message: 'Email informado é invalido' })
   email: string;
 
