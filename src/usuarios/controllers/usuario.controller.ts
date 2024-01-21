@@ -10,8 +10,12 @@ export class UsuarioController {
   @Post()
   //implementado DTO para tipagem dos dados do usuario
   async criarUsuario(@Body() dadosDoUsuario: CriaUsuariosDTO) {
-    this.usuarioRepository.salvar(dadosDoUsuario);
-    return dadosDoUsuario;
+    try {
+      this.usuarioRepository.salvar(dadosDoUsuario);
+      return dadosDoUsuario;
+    } catch (error) {
+      return { message: error, dadosDoUsuario };
+    }
   }
 
   @Get()
