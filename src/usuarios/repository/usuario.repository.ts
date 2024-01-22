@@ -15,24 +15,40 @@ export class UsuarioRepository {
   }
 
   async atualizar(id: string, novosDadosDoUsuario: Partial<UsuarioEntity>) {
-    const usuarioExiste = this.usuarios.find((usuario) => usuario.id === id);
-
-    if (!usuarioExiste) {
-      throw new Error('Usuário não existe');
-    }
+    const usuario = this.buscaPorId(id);
 
     Object.entries(novosDadosDoUsuario).forEach(([chave, valor]) => {
       if (chave === 'id') {
         return;
       }
-      usuarioExiste[chave] = valor;
+      usuario[chave] = valor;
     });
-    return usuarioExiste;
+    return usuario;
+  }
+
+  async remover(id: string) {
+    const usuario = this.buscaPorId(id);
+
+    this.usuarios = this.usuarios.filter((usuarioSalvo) => {
+      usuarioSalvo.id !== id;
+    });
+
+    return usuario;
   }
 
   async checaSeEmailExiste(email: string) {
     const usuarioVerificado = this.usuarios.find((usuario) => usuario.email === email);
 
     return usuarioVerificado !== undefined;
+  }
+
+  private buscaPorId(id: string) {
+    const usuarioExiste = this.usuarios.find((usuario) => usuario.id === id);
+
+    if (!usuarioExiste) {
+      throw new Error('Usuário não existe');
+    }
+
+    return usuarioExiste;
   }
 }
