@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-import { EmailEhUnico } from '../utils/validator/emailEhUnico.validator';
+import { EmailEhUnico } from '../validator/emailEhUnico.validator';
 
 export class CriaUsuariosDTO {
   @IsNotEmpty({ message: 'CPF é obrigatório' })

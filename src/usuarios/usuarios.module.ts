@@ -1,4 +1,4 @@
-import { EmailEhUnicoValidator } from './utils/validator/emailEhUnico.validator';
+import { EmailEhUnicoValidator } from './validator/emailEhUnico.validator';
 import { Module } from '@nestjs/common';
 import { UsuarioController } from './controllers/usuario.controller';
 import { UsuarioRepository } from './repository/usuario.repository';
