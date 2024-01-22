@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UsuarioEntity } from '../entity/Usuario.entity';
+import { UsuarioEntity } from './../entity/Usuario.entity';
+import e from 'express';
 
 @Injectable()
 export class UsuarioRepository {
@@ -11,6 +12,22 @@ export class UsuarioRepository {
 
   async listar() {
     return this.usuarios;
+  }
+
+  async atualizar(id: string, novosDadosDoUsuario: Partial<UsuarioEntity>) {
+    const usuarioExiste = this.usuarios.find((usuario) => usuario.id === id);
+
+    if (!usuarioExiste) {
+      throw new Error('Usuário não existe');
+    }
+
+    Object.entries(novosDadosDoUsuario).forEach(([chave, valor]) => {
+      if (chave === 'id') {
+        return;
+      }
+      usuarioExiste[chave] = valor;
+    });
+    return usuarioExiste;
   }
 
   async checaSeEmailExiste(email: string) {
