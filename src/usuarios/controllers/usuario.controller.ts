@@ -49,8 +49,8 @@ export class UsuarioController {
     const usuarioRemovido = await this.usuarioRepository.remover(id);
 
     return {
-      usuario: usuarioRemovido,
       message: 'Usuário removido com sucesso.',
+      usuario: usuarioRemovido,
     };
   }
 }
