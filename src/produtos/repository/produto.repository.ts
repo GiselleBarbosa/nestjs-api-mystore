@@ -1,40 +1,51 @@
 import { Injectable } from '@nestjs/common';
+import { ProdutoEntity } from '../entity/Produto.entity';
 
 @Injectable()
 export class ProdutoRepository {
-  private produtos = [
-    {
-      nome: 'Figura de ação Marvel Homem Aranha Olympus Homem Aranha E6358 de Hasbro Classic',
-      valor: 70.0,
-      quantidadeDisponivel: 10,
-      descricao: 'Produto novo, bem acabado, alegria para colecionadores',
-      caracteristicas: [
-        {
-          nome: 'Fabricante',
-          descricao: 'Iron Studios',
-        },
-        {
-          nome: 'material',
-          descricao: 'Plástico',
-        },
-      ],
-      imagens: [
-        {
-          url: 'https://i.imgur.com/dwDZICq.jpg',
-          descricao: 'Imagem do Homem Aranha',
-        },
-      ],
-      categoria: 'Colecionáveis',
-      dataCriacao: '2022-10-12T14:22:53.496Z',
-      dataAtualizacao: '2022-10-12T14:22:53.496Z',
-    },
-  ];
+  private produtos: ProdutoEntity[] = [];
 
-  async salvar(produto) {
+  async criar(produto: ProdutoEntity) {
     this.produtos.push(produto);
   }
 
   async listar() {
     return this.produtos;
+  }
+
+  async atualizar(id: string, novosDadosDoProduto: Partial<ProdutoEntity>) {
+    const produto = this.buscaPorId(id);
+
+    Object.entries(novosDadosDoProduto).forEach(([chave, valor]) => {
+      if (chave === 'id') {
+        return;
+      }
+      produto[chave] = valor;
+    });
+    return produto;
+  }
+
+  async remover(id: string) {
+    const produto = this.buscaPorId(id);
+
+    this.produtos = this.produtos.filter((produtoSalvo) => produtoSalvo.id !== id);
+
+    return produto;
+  }
+
+  async checaSeNomeExiste(nome: string) {
+    const produtoVerificado = this.produtos.find((produto) => produto.nome === nome);
+
+    return produtoVerificado !== undefined;
+  }
+
+  private buscaPorId(id: string) {
+    const possivelProduto = this.produtos.find((produto) => produto.id === id);
+
+    if (!possivelProduto) {
+      throw new Error('Produto não existe');
+    }
+
+    return possivelProduto;
   }
 }

@@ -7,7 +7,7 @@ export class CriaUsuariosDTO {
   @IsString({ message: 'CPF inválido' })
   cpf: string;
 
-  @IsString({ message: 'Nome é inválido' })
+  @IsString({ message: 'Nome invalido' })
   name: string;
 
   @IsString({ message: 'Telefone informado é obrigátorio' })
