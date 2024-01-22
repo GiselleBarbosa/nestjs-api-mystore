@@ -1,4 +1,4 @@
-import { CriaUsuariosDTO } from '../dto/criaUsuario.dto';
+import { CriaUsuariosDTO } from '../dto/CriaUsuario.dto';
 import { usuarioEntity } from '../entity/usuario.entity';
 import { UsuarioRepository } from '../repository/usuario.repository';
 import { Body, Controller, Get, Post } from '@nestjs/common';

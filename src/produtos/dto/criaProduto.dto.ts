@@ -10,8 +10,8 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-import { CaracteristicaProdutoDTO } from './caracteristicaProduto.dto';
-import { ImagemProdutoDTO } from './imagemProduto.dto';
+import { CaracteristicaProdutoDTO } from './CaracteristicaProduto.dto';
+import { ImagemProdutoDTO } from './ImagemProduto.dto';
 import { Type } from 'class-transformer';
 
 export class CriaProdutoDTO {

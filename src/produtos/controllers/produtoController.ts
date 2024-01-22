@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ProdutoRepository } from '../repository/produto.repository';
-import { CriaProdutoDTO } from '../dto/criaProduto.dto';
+import { CriaProdutoDTO } from '../dto/CriaProduto.dto';
 
 @Controller('/produtos')
 export class ProdutoController {
